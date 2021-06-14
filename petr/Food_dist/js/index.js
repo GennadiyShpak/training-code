@@ -1,3 +1,7 @@
+import TimerApi from './timer-Api/timerApi.js';
+import refs from './refs.js';
+const { timerSeconds, timerMinutes, timerHours, timerDays } = refs;
+
 const tabs = document.querySelectorAll('.tabheader__item'),
   tabsContent = document.querySelectorAll('.tabcontent'),
   tabsParent = document.querySelector('.tabheader__items');
@@ -33,3 +37,13 @@ tabsParent.addEventListener('click', function (event) {
     });
   }
 });
+
+function updateClockFace({ days, hours, mins, secs }) {
+  timerDays.textContent = days;
+  timerHours.textContent = hours;
+  timerMinutes.textContent = mins;
+  timerSeconds.textContent = secs;
+}
+
+const timer = new TimerApi('2021-06-18');
+timer.start(updateClockFace);
